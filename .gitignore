@@ -1,0 +1,7 @@
+#Ignore loarge data directories
+models/
+logs/
+data/
+
+#ignore any preprocessed data files
+*.pickle

@@ -18,7 +18,7 @@ IMG_SIZE = 48
 #CATEGORIES = ["angry", "fear", "happy", "sad", "surprise", "neutral"]
 CATEGORIES = [ "happy", "sad", "neutral"]
 SETS = ["test", "train", "val"]
-NAME = f"EmoteCNN-1697070787"
+NAME = f"EmoteCNN-conv-256-dens-1024-densLyr-3-fltr-3-1697165753"
 
 targets = np.array([list(range(len(CATEGORIES)))]).reshape(-1)
 one_hot_targets = np.eye(len(CATEGORIES))[targets]

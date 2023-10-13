@@ -70,9 +70,9 @@ def process_data(set, balance_to_lowest=False):
 #hyperparamters
 FILTER_SIZES = [3]
 DENSE_SIZES = [1024]
-DENSE_LAYERS = [1,2,3]
+DENSE_LAYERS = [3]
 CONV_SIZE = [256]
-EPOCHS = 50
+EPOCHS = 15
 
 time_label = int(time.time())
 #now iterate through hyperparameters
@@ -128,7 +128,6 @@ for dense_layers in DENSE_LAYERS:
                 model = Sequential()
 
                 model.add(Conv2D(conv_size, (filter_size, filter_size), input_shape=X.shape[1:], activation='relu'))
-                model.add(Activation('relu'))
                 model.add(MaxPooling2D(pool_size=(2, 2)))
 
                 model.add(Conv2D(conv_size, (filter_size, filter_size), activation='relu'))
@@ -146,11 +145,11 @@ for dense_layers in DENSE_LAYERS:
                 model.add(Dropout(0.2))
 
                 model.add(Dense(len(CATEGORIES)))
-                model.add(Activation('sigmoid'))
+                model.add(Activation('softmax'))
 
-                model.compile(loss='categorical_crossentropy',
+                model.compile(loss='sparse_categorical_crossentropy',
                             optimizer='Adam',
-                            metrics=['accuracy'])
+                            metrics=['accuracy', 'categorical_accuracy'])
 
                 # trainable_count = int(
                 #     np.sum([K.count_params(p) for p in set(model.trainable_weights)]))
